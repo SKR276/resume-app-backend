@@ -12,4 +12,13 @@ router.post("/resume-Entry",async(req,res)=>{
     })
 })
 
+router.get("/viewall",async(req,res)=>{
+    let result=await resumeModel.find()
+    .populate(
+        "userId","mobileNo address -_id"
+    )
+    .exec()
+    res.json(result)
+})
+
 module.exports=router
